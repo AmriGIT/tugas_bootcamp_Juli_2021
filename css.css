@@ -12,7 +12,18 @@ body {
   height: 225px;
   max-height: 225px;
 }
+.hiden{
+  display: none;
+}
 
+.login{
+  padding: 60px;
+  padding-bottom: 10px;
+}
+.login h1{
+  text-align: center;
+  border-bottom: 1px solid black;
+}
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 

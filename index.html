@@ -35,372 +35,359 @@
 
   <!-- Custom styles for this template -->
   <link href="css.css" rel="stylesheet">
+  <script src="js.js"></script>
 </head>
 
 <body>
 
-  <header>
-    <nav class="navbar navbar-expand-md navbar navbar-light fixed-top" style="background-color: rgb(253, 253, 253);">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="assets/img/logo.png" alt="" width="30" class="d-inline-block align-text-top">
-          MAN SUKOHARJO</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+  <div class="login" name="fLogin">
+    <div><h1>HALAMAN LOGIN</h1></div>
+    <form class="row g-3" name="fLogin">
+      <div class="col-md-6">
+        <label for="username validationCustom01" class="form-label">Username</label>
+        <input type="username" name="username" class="form-control" id="username validationCustom01" required>
+      </div>
+      <div class="col-md-6">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password">
+      </div>
+      <div class="col-md-6">
+        <input type="button" onclick="clickButton()" class="btn btn-primary" value="Login">
+      </div>
+    </form>
+  </div>
+  <div class="halamanUtama hiden">
+    <header>
+      <nav class="navbar navbar-expand-md navbar navbar-light fixed-top" style="background-color: rgb(253, 253, 253);">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="assets/img/logo.png" alt="" width="30" class="d-inline-block align-text-top">
+            MAN SUKOHARJO</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">HOME</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  PROFIL
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">VISI DAN MISI</a></li>
+                  <li><a class="dropdown-item" href="#">SEJARAH</a></li>
+                  <li><a class="dropdown-item" href="#">STRUKTUR ORGANISASI</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">BERITA</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">DOWNLOAD</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">E-LEARNING</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-warning" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- Carousel wrapper -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-mdb-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../assets/img/banner-post-750x458.png" class="d-block w-100" alt="..." />
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/img/banner-post4.png" class="d-block w-100" alt="..." />
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/img/img1.jpeg" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators"
+          data-mdb-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">HOME</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                PROFIL
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">VISI DAN MISI</a></li>
-                <li><a class="dropdown-item" href="#">SEJARAH</a></li>
-                <li><a class="dropdown-item" href="#">STRUKTUR ORGANISASI</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">BERITA</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">DOWNLOAD</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">E-LEARNING</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-warning" type="submit">Search</button>
-          </form>
-        </div>
+        <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleIndicators"
+          data-mdb-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-    </nav>
-  </header>
-
-  <main>
-
-    <!-- Carousel wrapper -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-mdb-ride="carousel">
-      <div class="carousel-indicators">
-        <button
-          type="button"
-          data-mdb-target="#carouselExampleIndicators"
-          data-mdb-slide-to="0"
-          class="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-mdb-target="#carouselExampleIndicators"
-          data-mdb-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-mdb-target="#carouselExampleIndicators"
-          data-mdb-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img
-            src="../assets/img/banner-post-750x458.png"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="../assets/img/banner-post4.png"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="../assets/img/img1.jpeg"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-      </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-mdb-target="#carouselExampleIndicators"
-        data-mdb-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-mdb-target="#carouselExampleIndicators"
-        data-mdb-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
 
 
-    <div class="container marketing">
+      <div class="container marketing">
 
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-          <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4">
+            <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
             role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
             <title>Placeholder</title>
             <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
           </svg> -->
-          <img class="bd-placeholder-img rounded-circle" width="140" height="140"
-            src="../assets/img/banner-post-750x458.png" alt="" role="img" aria-label="Placeholder: 140x140"
-            preserveAspectRatio="xMidYMid slice" focusable="false" srcset="">
-          <title>MAN SUKOHARJO SIAPKAN AREA PENJEMPUTAN</title>
-          <h4>MAN SUKOHARJO SIAPKAN AREA PENJEMPUTAN</h4>
-          <p>Sukoharjo – Madrasah Aliyan Negeri (MAN) Sukoharjo menggelar simulasi pembelajaran
-            tatap muka (PTM), senin (5/4). Diikuti 71 siswa</p>
-          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="../assets/img/banner-post4.png"
-            alt="" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"
-            srcset="">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+              src="../assets/img/banner-post-750x458.png" alt="" role="img" aria-label="Placeholder: 140x140"
+              preserveAspectRatio="xMidYMid slice" focusable="false" srcset="">
+            <title>MAN SUKOHARJO SIAPKAN AREA PENJEMPUTAN</title>
+            <h4>MAN SUKOHARJO SIAPKAN AREA PENJEMPUTAN</h4>
+            <p>Sukoharjo – Madrasah Aliyan Negeri (MAN) Sukoharjo menggelar simulasi pembelajaran
+              tatap muka (PTM), senin (5/4). Diikuti 71 siswa</p>
+            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="../assets/img/banner-post4.png"
+              alt="" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"
+              srcset="">
 
-          <h4>PESERTA DIDIK MAN SUKOHARJO SENANG MENGIKUTI PEMBELAJARAN TATAP MUKA</h4>
-          <p>Pembelajaran tatap muka di MAN Sukoharjo hari ke dua (06/04) berjalan dengan lancar.</p>
-          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-
-
-        <div class="col-lg-4">
-          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="../assets/img/img1.jpeg" alt=""
-            role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"
-            srcset="">
-
-          <h4>Kakanwil Resmi Buka KSM Tingkat Provinsi Jawa Tengah di MAN Sukoharjo</h4>
-          <p>Sukoharjo- Didampingi Kepala Kantor Kemenag Sukoharjo, Muh Mu’alim,Kakanwil Kemenag Jateng H. Musta’in</p>
-          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
+            <h4>PESERTA DIDIK MAN SUKOHARJO SENANG MENGIKUTI PEMBELAJARAN TATAP MUKA</h4>
+            <p>Pembelajaran tatap muka di MAN Sukoharjo hari ke dua (06/04) berjalan dengan lancar.</p>
+            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
 
 
-      <!-- START THE FEATURETTES -->
+          <div class="col-lg-4">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="../assets/img/img1.jpeg" alt=""
+              role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"
+              srcset="">
 
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Kakanwil Resmi Buka KSM Tingkat <span class="text-muted">Provinsi Jawa Tengah
-              di MAN Sukoharjo</span>
-          </h2>
-          <p class="lead">Sukoharjo- Didampingi Kepala Kantor Kemenag Sukoharjo, Muh Mu’alim,Kakanwil Kemenag Jateng H.
-            Musta’in</p>
-        </div>
-        <div class="col-md-5">
-          <img src="../assets/img/img1.jpeg"
-            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice" focusable="false">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 order-md-4">
-          <h2 class="featurette-heading">Kakanwil Resmi Buka KSM Tingkat <span class="text-muted">Provinsi Jawa Tengah
-              di MAN Sukoharjo</span>
-          </h2>
-          <p class="lead">Sukoharjo- Didampingi Kepala Kantor Kemenag Sukoharjo, Muh Mu’alim,Kakanwil Kemenag Jateng H.
-            Musta’in</p>
-        </div>
-        <div class="col-md-5">
-          <img src="../assets/img/img1.jpeg"
-            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice" focusable="false">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Kakanwil Resmi Buka KSM Tingkat <span class="text-muted">Provinsi Jawa Tengah
-              di MAN Sukoharjo</span>
-          </h2>
-          <p class="lead">Sukoharjo- Didampingi Kepala Kantor Kemenag Sukoharjo, Muh Mu’alim,Kakanwil Kemenag Jateng H.
-            Musta’in</p>
-        </div>
-        <div class="col-md-5">
-          <img src="../assets/img/img1.jpeg"
-            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice" focusable="false">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
-      <nav aria-label="" >
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
-    </div><!-- /.container -->
+            <h4>Kakanwil Resmi Buka KSM Tingkat Provinsi Jawa Tengah di MAN Sukoharjo</h4>
+            <p>Sukoharjo- Didampingi Kepala Kantor Kemenag Sukoharjo, Muh Mu’alim,Kakanwil Kemenag Jateng H. Musta’in
+            </p>
+            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
 
 
-    <!-- FOOTER -->
-    <!-- Footer -->
-    <footer class="text-center text-lg-start bg-light text-muted">
-      <!-- Section: Social media -->
-      <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-        <!-- Left -->
-        <div class="me-5 d-none d-lg-block">
-          <span>Get connected with us on social networks:</span>
-        </div>
-        <!-- Left -->
+        <!-- START THE FEATURETTES -->
 
-        <!-- Right -->
-        <div>
-          <a href="" class="me-4">
-            <i class="fab fa-facebook-f"></i>
-            @mansukoharjo
-          </a>
-          <a href="" class="me-4">
-            <i class="fab fa-twitter"></i>
-            @mansukoharjo
-          </a>
-          <a href="" class="me-4">
-            <i class="fab fa-google"></i>
-            @mansukoharjo
-          </a>
-          <a href="" class="me-4">
-            <i class="fab fa-instagram"></i>
-            @mansukoharjo
-          </a>
-          <a href="" class="me-4">
-            <i class="fab fa-linkedin"></i>
-            @mansukoharjo
-          </a>
-          <a href="" class="me-4">
-            <i class="fab fa-youtube"></i>
-            mansukoharjo
-          </a>
-        </div>
-        <!-- Right -->
-      </section>
-      <!-- Section: Social media -->
+        <hr class="featurette-divider">
 
-      <!-- Section: Links  -->
-      <section class="">
-        <div class="container text-center text-md-start mt-5">
-          <!-- Grid row -->
-          <div class="row mt-3">
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-              <!-- Content -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                <i class="fas fa-gem me-3"></i>Madrasah Aliyah Negeri Sukoharjo
-              </h6>
-              <p>
-                Madrasah Aliyah Negeri Sukoharjo adalah Sekolah di bidang Agama Islam ditingkat Menengah Ke Atas
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                Kegiatan Ekstrakurikuler
-              </h6>
-              <p>
-                <a href="#!" class="text-reset">Pramuka</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Futsal</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Qiro'ah</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Badminton</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                Program Madrasah
-              </h6>
-              <p>
-                <a href="#!" class="text-reset">Program Kelas Reguler</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Program Kelas Unggulan</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                Contact
-              </h6>
-              <p><i class="fas fa-home me-3"></i> Jl. KH. Samanhudi  Sukoharjo</p>
-              <p>
-                <i class="fas fa-envelope me-3"></i>
-                mansukoharjo@gmail.com
-              </p>
-              <p><i class="fas fa-phone me-3"></i>027115678</p>
-              <p><i class="fas fa-print me-3"></i> 027115678</p>
-            </div>
-            <!-- Grid column -->
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Kakanwil Resmi Buka KSM Tingkat <span class="text-muted">Provinsi Jawa Tengah
+                di MAN Sukoharjo</span>
+            </h2>
+            <p class="lead">Sukoharjo- Didampingi Kepala Kantor Kemenag Sukoharjo, Muh Mu’alim,Kakanwil Kemenag Jateng
+              H.
+              Musta’in</p>
           </div>
-          <!-- Grid row -->
+          <div class="col-md-5">
+            <img src="../assets/img/img1.jpeg"
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+          </div>
         </div>
-      </section>
-      <!-- Section: Links  -->
 
-      <!-- Copyright -->
-      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="mansukoharjo.sch.id">MAN SUKOHARJO</a>
-      </div>
-      <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
-  </main>
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-4">
+            <h2 class="featurette-heading">Kakanwil Resmi Buka KSM Tingkat <span class="text-muted">Provinsi Jawa Tengah
+                di MAN Sukoharjo</span>
+            </h2>
+            <p class="lead">Sukoharjo- Didampingi Kepala Kantor Kemenag Sukoharjo, Muh Mu’alim,Kakanwil Kemenag Jateng
+              H.
+              Musta’in</p>
+          </div>
+          <div class="col-md-5">
+            <img src="../assets/img/img1.jpeg"
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Kakanwil Resmi Buka KSM Tingkat <span class="text-muted">Provinsi Jawa Tengah
+                di MAN Sukoharjo</span>
+            </h2>
+            <p class="lead">Sukoharjo- Didampingi Kepala Kantor Kemenag Sukoharjo, Muh Mu’alim,Kakanwil Kemenag Jateng
+              H.
+              Musta’in</p>
+          </div>
+          <div class="col-md-5">
+            <img src="../assets/img/img1.jpeg"
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+        <nav aria-label="">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div><!-- /.container -->
 
 
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- MDB -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+      <!-- FOOTER -->
+      <!-- Footer -->
+      <footer class="text-center text-lg-start bg-light text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+          <!-- Left -->
+          <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+          </div>
+          <!-- Left -->
 
+          <!-- Right -->
+          <div>
+            <a href="" class="me-4">
+              <i class="fab fa-facebook-f"></i>
+              @mansukoharjo
+            </a>
+            <a href="" class="me-4">
+              <i class="fab fa-twitter"></i>
+              @mansukoharjo
+            </a>
+            <a href="" class="me-4">
+              <i class="fab fa-google"></i>
+              @mansukoharjo
+            </a>
+            <a href="" class="me-4">
+              <i class="fab fa-instagram"></i>
+              @mansukoharjo
+            </a>
+            <a href="" class="me-4">
+              <i class="fab fa-linkedin"></i>
+              @mansukoharjo
+            </a>
+            <a href="" class="me-4">
+              <i class="fab fa-youtube"></i>
+              mansukoharjo
+            </a>
+          </div>
+          <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  <i class="fas fa-gem me-3"></i>Madrasah Aliyah Negeri Sukoharjo
+                </h6>
+                <p>
+                  Madrasah Aliyah Negeri Sukoharjo adalah Sekolah di bidang Agama Islam ditingkat Menengah Ke Atas
+                </p>
+              </div>
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Kegiatan Ekstrakurikuler
+                </h6>
+                <p>
+                  <a href="#!" class="text-reset">Pramuka</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Futsal</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Qiro'ah</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Badminton</a>
+                </p>
+              </div>
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Program Madrasah
+                </h6>
+                <p>
+                  <a href="#!" class="text-reset">Program Kelas Reguler</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Program Kelas Unggulan</a>
+                </p>
+              </div>
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Contact
+                </h6>
+                <p><i class="fas fa-home me-3"></i> Jl. KH. Samanhudi Sukoharjo</p>
+                <p>
+                  <i class="fas fa-envelope me-3"></i>
+                  mansukoharjo@gmail.com
+                </p>
+                <p><i class="fas fa-phone me-3"></i>027115678</p>
+                <p><i class="fas fa-print me-3"></i> 027115678</p>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+          </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+          © 2021 Copyright:
+          <a class="text-reset fw-bold" href="mansukoharjo.sch.id">MAN SUKOHARJO</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
+    </main>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+  </div>
 </body>
 
 </html>
