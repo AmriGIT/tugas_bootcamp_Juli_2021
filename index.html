@@ -70,45 +70,64 @@
         <input type="password" class="form-control" name="password" placeholder="Password">
       </div>
       <div class="col-md-6">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" name="gender">
           <option selected>Jenis Kelamin</option>
-          <option value="1">Laki-laki</option>
-          <option value="2">Perempuan</option>
+          <option value="Laki-Laki">Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
         </select>
       </div>
       <div class="col-md-6">
         <input type="password" class="form-control" name="iPasswordConf" placeholder="Password Konfirmasi">
       </div>
       <div class="col-md-6">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" name="agama">
           <option selected>Agama</option>
-          <option value="1">Islam</option>
-          <option value="2">Kristen</option>
-          <option value="3">Lainnya</option>
+          <option value="Islam">Islam</option>
+          <option value="Kristen">Kristen</option>
+          <option value="Lainnya">Lainnya</option>
         </select>
       </div>
       <div class="col-md-6">
-        <input type="button" class="btn btn-primary" onclick="fnRegistred()"
-          value="Registrasi">
+        <input type='checkbox' pilihHobi="pilihHobi" id='hobbies0' name='hobbies' value='football' />
+        <label for='hobbies0'>Football</label><br />
+
+        <input type='checkbox' pilihHobi="pilihHobi" id='hobbies1' name='hobbies' value='Futsal' />
+        <label for='hobbies1'>Futsal</label><br />
+
+        <input type='checkbox' pilihHobi="pilihHobi" id='hobbies2' name='hobbies' value='Baseball' />
+        <label for='hobbies2'>Baseball</label><br />
+
+        <input type='checkbox' pilihHobi="pilihHobi" id='hobbies3' name='hobbies' value='Tennis' />
+        <label for='hobbies3'>Tennis</label><br />
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="alamat" placeholder="Alamat">
+      </div>
+      <div class="col-md-6">
+        <!-- <input type="button" class="btn btn-primary" onclick="fnRegistred2()" value="Registrasi"> -->
+        <input type="button" proses="proses" class="btn btn-primary addBtn" value="Registrasi">
       </div>
     </form>
     <div class="">
       <table class="table">
         <thead>
           <tr>
-
+            <th scope="col">No</th>
             <th scope="col">Nama Lengkap</th>
             <th scope="col">Username</th>
+            <th scope="col">Jenis Kelamin</th>
+            <th scope="col">Agama</th>
+            <th scope="col">Hobi</th>
+            <th scope="col">Alamat</th>
           </tr>
         </thead>
         <tbody class="view2">
-          <tr>
-            
-            <td class="isiNama"></td>
-            <td class="isiuser"></td>
-          </tr>
         </tbody>
       </table>
+      <div id="listingTable"></div>
+      <a href="javascript:prevPage()" id="btn_prev">Prev</a>
+      <a href="javascript:nextPage()" id="btn_next">Next</a>
+      page: <span id="page"></span>
     </div>
   </div>
 
@@ -128,27 +147,33 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                <a class="nav-link active menu" data-menu="home" aria-current="page" href="#">HOME</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
                   PROFIL
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">VISI DAN MISI</a></li>
-                  <li><a class="dropdown-item" href="#">SEJARAH</a></li>
-                  <li><a class="dropdown-item" href="#">STRUKTUR ORGANISASI</a></li>
+                  <li><a class="dropdown-item menu" href="#">VISI DAN MISI</a></li>
+                  <li><a class="dropdown-item menu" href="#">SEJARAH</a></li>
+                  <li><a class="dropdown-item menu" href="#">STRUKTUR ORGANISASI</a></li>
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">BERITA</a>
+                <a class="nav-link menu" href="#">BERITA</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">DOWNLOAD</a>
+                <a class="nav-link menu" href="#">DOWNLOAD</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">E-LEARNING</a>
+                <a class="nav-link menu" href="#">E-LEARNING</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link menu" data-menu="register" href="#">REGISTRASI</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link menu" data-menu="login" href="#">LOGIN</a>
               </li>
             </ul>
             <form class="d-flex">
