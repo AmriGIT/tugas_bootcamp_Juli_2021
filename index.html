@@ -41,7 +41,9 @@
 <body>
 
   <div class="login" name="fLogin">
-    <div><h1>HALAMAN LOGIN</h1></div>
+    <div>
+      <h1>HALAMAN LOGIN</h1>
+    </div>
     <form class="row g-3" name="fLogin">
       <div class="col-md-6">
         <label for="username validationCustom01" class="form-label">Username</label>
@@ -55,7 +57,63 @@
         <input type="button" onclick="clickButton()" class="btn btn-primary" value="Login">
       </div>
     </form>
+
+    <h1>Registrasi</h1>
+    <form name="form1" class="row g-3">
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="FullName" placeholder="Nama Lengkap">
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="userName" placeholder="Username">
+      </div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+      </div>
+      <div class="col-md-6">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Jenis Kelamin</option>
+          <option value="1">Laki-laki</option>
+          <option value="2">Perempuan</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" name="iPasswordConf" placeholder="Password Konfirmasi">
+      </div>
+      <div class="col-md-6">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Agama</option>
+          <option value="1">Islam</option>
+          <option value="2">Kristen</option>
+          <option value="3">Lainnya</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="button" class="btn btn-primary" onclick="fnRegistred()"
+          value="Registrasi">
+      </div>
+    </form>
+    <div class="">
+      <table class="table">
+        <thead>
+          <tr>
+
+            <th scope="col">Nama Lengkap</th>
+            <th scope="col">Username</th>
+          </tr>
+        </thead>
+        <tbody class="view2">
+          <tr>
+            
+            <td class="isiNama"></td>
+            <td class="isiuser"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
+
+
   <div class="halamanUtama hiden">
     <header>
       <nav class="navbar navbar-expand-md navbar navbar-light fixed-top" style="background-color: rgb(253, 253, 253);">
