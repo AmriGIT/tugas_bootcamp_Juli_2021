@@ -61,16 +61,47 @@
     <h1>Registrasi</h1>
     <form name="form1" class="row g-3">
       <div class="col-md-6">
-        <input type="text" class="form-control" name="name" placeholder="Nama Lengkap">
+        <input type="text" class="form-control" name="FullName" placeholder="Nama Lengkap">
       </div>
       <div class="col-md-6">
-        <input type="text" class="form-control" name="username" placeholder="Username">
+        <input type="text" class="form-control" name="userName" placeholder="Username">
       </div>
       <div class="col-md-6">
-        <input type="email" class="form-control" name="email" placeholder="Email">
+        <input type="password" class="form-control" name="password" placeholder="Password">
       </div>
       <div class="col-md-6">
-        <input type="text" class="form-control" name="city" placeholder="city">
+        <select class="form-select" aria-label="Default select example" name="gender">
+          <option selected>Jenis Kelamin</option>
+          <option value="Laki-Laki">Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" name="iPasswordConf" placeholder="Password Konfirmasi">
+      </div>
+      <div class="col-md-6">
+        <select class="form-select" aria-label="Default select example" name="agama">
+          <option selected>Agama</option>
+          <option value="Islam">Islam</option>
+          <option value="Kristen">Kristen</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type='checkbox'  name='hobbies' value='football' />
+        <label for=''>Football</label><br />
+
+        <input type='checkbox'  name='hobbies' value='Futsal' />
+        <label for=''>Futsal</label><br />
+
+        <input type='checkbox'  name='hobbies' value='Baseball' />
+        <label for=''>Baseball</label><br />
+
+        <input type='checkbox'  name='hobbies' value='Tennis' />
+        <label for=''>Tennis</label><br />
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="alamat" placeholder="Alamat">
       </div>
       <div class="col-md-6">
         <!-- <input type="button" class="btn btn-primary" onclick="fnRegistred2()" value="Registrasi"> -->
@@ -84,9 +115,10 @@
             <th scope="col">No</th>
             <th scope="col">Nama Lengkap</th>
             <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">City (Addrress)</th>
-            <th scope="col" colspan="2">ACTION</th>
+            <th scope="col">Jenis Kelamin</th>
+            <th scope="col">Agama</th>
+            <th scope="col">Hobi</th>
+            <th scope="col">Alamat</th>
           </tr>
         </thead>
         <tbody class="view2">

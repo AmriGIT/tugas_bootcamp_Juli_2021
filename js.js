@@ -1,57 +1,104 @@
 
+function clickButton() {
+    let halamanUtama = document.querySelector(".halamanUtama")
+    let divLogin = document.querySelector(".login")
+    const username = document.fLogin.username
+    const password = document.fLogin.password
+    console.log(username.value);
+    console.log(password.value);
+    username.add
+    const dbuser = "AmriFathoni"
+    const dbpass = "123456"
+    if (username.value == dbuser && password.value == dbpass) {
+        halamanUtama.classList.remove("hiden")
+        divLogin.classList.add("hiden")
+
+    } else {
+        alert("Username And Password Wrong!!")
+        username.value = ""
+        password.value = ""
+    }
+}
+
 var list = []
 var pageList = [];
-var currentPage = 0;
+var currentPage = 1;
 var numberPerPage = 10;
-var numberOfPages = 0;
-const PusharrayDatas = (user, fullName, jk, agama, hobi, alamat) => {
+var numberOfPages = 1;
+var usersApi =[]
+
+const fn2 = async () => {
+    return await fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+}
+
+
+
+const PusharrayDatas = (nomor, name, username, email, city) => {
     list.push({
-        user,
-        fullName,
-        jk,
-        agama,
-        hobi,
-        alamat
+        nomor,
+        name,
+        username,
+        email,
+        address : {
+            city
+        }
     })
 }
 document.addEventListener("click", e => {
     console.log(e);
     if (e.target.getAttribute("proses"))
-    makeList()
+        makeList()
+
 })
-function makeList() {
-    const user = document.form1.userName.value
-    const fullName = document.form1.FullName.value
-    const jk = document.form1.gender.value
-    const agama = document.form1.agama.value
-    const password = document.form1.password.value
-    const passwordConf = document.form1.iPasswordConf.value
-    const alamat = document.form1.alamat.value
-    const hobi = document.querySelector("[name='hobbies']:checked")?.value
-    if (!password == passwordConf) {
-        alert("Isi Password tidak sama")
-    } else {
 
-        PusharrayDatas(user, fullName, jk, agama, hobi, alamat)
-        document.querySelector('table>tbody').innerHTML = ""
-        for (x = 0; x < list.length; x++) {
-            const data = list[x]
-            document.querySelector('table>tbody').innerHTML += `
-            <tr>
-            <td value='${x + 1}'>${x + 1}</td>
-            <td>${data.user}</td>
-            <td>${data.fullName}</td>
-            <td>${data.jk}</td>
-            <td>${data.agama}</td>
-            <td>${data.hobi}</td>
-            <td>${data.alamat}</td>
 
-            </tr>
-            `
-            numberOfPages = getNumberOfPages();
-        }
-
+const callAPI = async () => {
+    list = await fn2()
+    console.log(list.length+1)
+    loadList()
+    for (let index = 0; index < list.length; index++) {
+        console.log(list[index]);
+        console.log(list[index].username);
+        console.log(list[index].email);
+        console.log(list[index].address.city)
+        numberOfPages = getNumberOfPages();
+        // const Name = list[index].name;
+        // const username = list[index].username;
+        // const email =list[index].email;
+        // const city = list[index].address.city
+        
     }
+
+    
+    console.timeEnd("FN1")
+}
+const makeList = () => {
+    nomor = list.length+1
+    const name = document.form1.name.value
+    const username = document.form1.username.value
+    const email = document.form1.email.value
+    const Newcity = document.form1.city.value
+    PusharrayDatas(nomor, name, username, email, Newcity)
+    loadList()
+    
+    for (x = 0; x < list.length; x++) {
+        numberOfPages = getNumberOfPages();
+    }
+
+
+}
+
+function loadList() {
+    var begin = ((currentPage - 1) * numberPerPage);
+    var end = begin + numberPerPage;
+
+    pageList = list.slice(begin, end);
+    
+    
+    drawList();
+    check();
+
 }
 
 function getNumberOfPages() {
@@ -78,21 +125,30 @@ function lastPage() {
     loadList();
 }
 
-function loadList() {
-    var begin = ((currentPage - 1) * numberPerPage);
-    var end = begin + numberPerPage;
 
-    pageList = list.slice(begin, end);
-    drawList();
-    check();
-}
-
-function drawList() {
-    // const nomr = document.getElementsByTagName('td').value;
-    document.getElementById("list").innerHTML = "";
+const drawList =  () => {
+    
+    const nomor1 = list.length
+    document.querySelector('table>tbody').innerHTML = " "
     for (r = 0; r < pageList.length; r++) {
-        document.getElementById("list").innerHTML += Object.values(pageList[r]) + "<br/>";
+        document.querySelector('table>tbody').innerHTML += `
+        <tr>
+        <td >${r+1}</td>
+        <td>${pageList[r].name}</td>
+        <td>${pageList[r].username}</td>
+        <td>${pageList[r].email}</td>
+        <td>${pageList[r].address.city}</td>
+        <td><a href=#>Edit </a> </td>
+        <td><a href=#>Hapus </a> </td>
+
+
+        </tr>
+        `
     }
+
+    // if(currentPage <=  1) currentPage = 1
+    // if(currentPage > getNumberOfPages()) currentPage = getNumberOfPages()
+    // document.querySelector("#page").innerHTML = currentPage;
 }
 
 function check() {
@@ -100,11 +156,15 @@ function check() {
     document.getElementById("previous").disabled = currentPage == 1 ? true : false;
     document.getElementById("first").disabled = currentPage == 1 ? true : false;
     document.getElementById("last").disabled = currentPage == numberOfPages ? true : false;
+
 }
 
 function load() {
-    makeList();
     loadList();
+    callAPI();
+
 }
+
+
 
 window.onload = load;
