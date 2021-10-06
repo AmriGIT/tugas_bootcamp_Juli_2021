@@ -11,7 +11,8 @@ class Login extends Component {
             username: "",
             password: "",
             address: "",
-            isLogin: false
+            isLogin: false,
+            isUpdate: false
         }
     }
 
@@ -30,21 +31,10 @@ class Login extends Component {
 
     loginButton = () => {
         const { username, password } = this.state
-        const result = this.props.allUser.find(obj => obj.username === username)
-        if (result != null) {
-            if (username === result.username && password === result.password) { // Bagaimana caranya me-reset value input ketika login success
-                this.setState({ isLogin: true })
-                this.resetForm()
-                this.props.cekLogin("contact")
-            } else alert("Invalid username or password!!")
-        }else{
-            alert ("Username Invalid")
-        }
-
-    }
-    cekdata = () => {
-        const result = this.props.allUser.find(obj => obj.username === this.state.username)
-        console.log(result.username)
+        if (username === "admin" && password === "1234") { // Bagaimana caranya me-reset value input ketika login success
+            this.setState({ isLogin: true })
+            this.resetForm()
+        } else alert("Invalid username or password!!")
     }
 
     registerButton = () => {
@@ -53,6 +43,25 @@ class Login extends Component {
             username, password, address
         }
         this.props.addData(newUser)
+    }
+
+    updateButton = () => {
+        const { username, password, address } = this.state
+        const newUser = {
+            username, password, address
+        }
+        this.props.editData(newUser)
+    }
+
+    componentDidMount() {
+        console.log(this.props.editUser);
+        const { username, password, address } = this.props.editUser
+        if (username && password && address) {
+            this.setState({
+                username, password, address,
+                isUpdate: true
+            })
+        }
     }
 
     render() {
@@ -88,8 +97,13 @@ class Login extends Component {
                     />
                     <div className="row-button">
                         <button onClick={this.loginButton}>Log In</button>
-                        <button onClick={this.registerButton}>Register</button>
-                        <button onClick={this.cekdata}>cek</button>
+                        {
+                            this.state.isUpdate
+                                ?
+                                <button onClick={this.updateButton}>Update</button>
+                                :
+                                <button onClick={this.registerButton}>Register</button>
+                        }
                     </div>
                 </div>
             </div>

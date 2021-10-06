@@ -21,6 +21,7 @@ class Navbar extends Component {
                 <Menu color="red" fn={() => this.props.goToPage("home")}>Home</Menu>
                 <Menu color="green" fn={() => this.props.goToPage("contact")}>Contact</Menu>
                 <Menu color="blue" fn={() => this.props.goToPage("login")}>Log In</Menu>
+                <Menu color="orange" fn={() => this.props.goToPage("eparkir")}>E-Parkir</Menu>
             </div>
         );
     }
