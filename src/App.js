@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 // import Content from './template/Content';
 import { Header, Navbar, Content } from "./template"
 import "./App.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   constructor(props) {

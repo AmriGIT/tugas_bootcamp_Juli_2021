@@ -16,7 +16,7 @@ class Eparkir2 extends Component {
     componentDidMount=() => {
         var intervalId = setInterval(this.timer, 1000);
         // store intervalId in the state so it can be accessed later:
-        if (this.props.hasil ==="2") {
+        if (this.props.cekin === "2") {
             this.setState({
                 intervalId: intervalId,
                 cekin : "2000"
@@ -35,15 +35,25 @@ class Eparkir2 extends Component {
     timer=()=>{
 
         this.setState({ currentCount: this.state.currentCount +1 });
-        if(this.state.currentCount >=5 && this.state.cekin ===2 ){
-            this.setState({
-                harga : this.state.currentCount*1000
-            })
+        console.log(this.state.currentCount)
+        if(this.state.currentCount >= 5 ){
+            // if(this.state.currentCount === 4){
+            //     console.log("hrga pertama")
+            // }
+            if(this.props.cekin === "2"){
+                const hargaawal = 2000 
+                this.setState({
+                    harga : ((this.state.currentCount-5)*1000+hargaawal)
+                })
+            }
+            else{
+                const hargaawal = 4000 
+                this.setState({
+                    harga : ((this.state.currentCount-5)*2000+hargaawal)
+                })
+            }
+
             
-        }else{
-            this.setState({
-                harga : this.state.currentCount*2000
-            })
         }
 
     }
@@ -59,7 +69,7 @@ class Eparkir2 extends Component {
         return (
             <>
                 <div className="login-containter">
-                    <h1> HARGA PARKIR RODA {this.props.hasil} @ {this.state.cekin} | {this.state.harga}</h1>
+                    <h1> HARGA PARKIR RODA {this.props.cekin} @ {this.state.cekin} | {this.state.harga}</h1>
                     <button onClick={this.cekout}>Cek Out</button>
                 </div>
             </>

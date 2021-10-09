@@ -9,9 +9,10 @@ class Content extends Component {
         this.state = {
             data: [],
             selectedUser: -1,
-            cekin : "",
-            harga :0,
-            currentCount:0
+            cekin: "",
+            harga: 0,
+            currentCount: 0,
+            data2: []
         }
     }
 
@@ -42,15 +43,28 @@ class Content extends Component {
         })
         this.props.goToPage("login")
     }
-    halamaneparkir = (e) =>{
+    halamaneparkir = (e) => {
         this.props.goToPage("cls")
         this.setState({
-            cekin : e
+            cekin: e
         })
     }
-    cekout = () =>{
-        console.log(this.state.harga)
+    cekout = (newParkir) => {
+        console.log(newParkir)
+        this.setState({
+            harga: newParkir.harga,
+            currentCount: newParkir.currentCount
+        }, this.result)
         this.props.goToPage("eparkir")
+        return newParkir
+    }
+    result = () => {
+        const { harga, currentCount,cekin } = this.state
+        const data2 = [harga, currentCount, cekin]
+        this.setState({
+            data2: data2
+        })
+        console.log(data2)
     }
 
     componentDidMount() {
@@ -74,20 +88,21 @@ class Content extends Component {
 
 
     render() {
+        // const harga = this.state.harga
+        // console.log(harga)
         const dataEdit = this.state.selectedUser >= 0 ? this.state.data[this.state.selectedUser] : {}
+        const result = this.state.harga >=0 ? this.state.data2 : [this.state.harga]
         if (this.props.menu === "login")
             return <Login addData={this.addButton} editData={this.editButton} editUser={dataEdit} />
 
         if (this.props.menu === "contact")
-        // const dataEdit = this.state.selectedUser >= 0 ? this.state.data[this.state.selectedUser] : {}
-            return <Contact users={this.state.data} setUser={this.updateSelectedUser } />
-        if(this.props.menu === "eparkir")
-            return <Eparkir halaman={this.halamaneparkir}></Eparkir>
-        if(this.props.menu ==="cls")
-        return <Eparkir2 hasil={this.state.cekin} cekout={this.cekout}></Eparkir2>
-
-        
-        return <Home />
+            // const dataEdit = this.state.selectedUser >= 0 ? this.state.data[this.state.selectedUser] : {}
+            return <Contact users={this.state.data} setUser={this.updateSelectedUser} />
+        if (this.props.menu === "eparkir")
+            return <Eparkir halaman={this.halamaneparkir} result={result}></Eparkir>
+        if (this.props.menu === "cls")
+            return <Eparkir2 cekin={this.state.cekin} cekout={this.cekout}></Eparkir2>    
+            return <Home />
     }
 }
 

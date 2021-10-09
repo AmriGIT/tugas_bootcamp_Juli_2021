@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Carouselimg } from '../../components';
 
 
 
@@ -15,6 +16,7 @@ class Home extends Component {
                 alignItems: "center",
                 flexDirection: "column"
             }}>
+                <Carouselimg/>
                 <div>
                     <div>{this.state.username1}</div>
                     <div>{this.state.password}</div>
