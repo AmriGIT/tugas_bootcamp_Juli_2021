@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import "./menu.css"
 
 
@@ -7,15 +8,16 @@ class Menu extends Component {
         super(props);
         this.state = {}
     }
-    render() {
+    render() { 
+        const target = this.props.target 
         return (
-            <div
+            <Link  to ={target}
                 className="menu"
                 style={{ backgroundColor: this.props.color }}
                 onClick={this.props.fn}
             >
                 {this.props.children}
-            </div>
+            </Link>
         );
     }
 }

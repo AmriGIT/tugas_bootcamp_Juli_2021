@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { Header, Navbar, Content } from "./template"
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -23,11 +24,19 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      // <>
+      //   <Header />
+      //   <Navbar goToPage={this.changePage} />
+      //   <Content menu={this.state.menu} goToPage={this.changePage} />
+      // </>
+      <Router>
         <Header />
-        <Navbar goToPage={this.changePage} />
-        <Content menu={this.state.menu} goToPage={this.changePage} />
-      </>
+        <Navbar goToPage ={this.changePage} />
+        <Content
+          menu = {this.state.menu}
+          goToPage = {this.changePage}
+        />
+      </Router>
     );
   }
 }

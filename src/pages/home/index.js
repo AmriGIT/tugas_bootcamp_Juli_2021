@@ -15,7 +15,8 @@ class Home extends Component {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column"
-            }}>
+            }}> 
+            
                 <Carouselimg/>
                 <div>
                     <div>{this.state.username1}</div>
