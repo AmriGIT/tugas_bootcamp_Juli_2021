@@ -3,15 +3,15 @@ import React, { Component } from 'react'
 // import Navbar from './template/Navbar';
 // import Content from './template/Content';
 import { Header, Navbar, Content } from "./template"
-import "./App.css"
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import "./App.css"
 import { BrowserRouter as Router} from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: "home"
+      menu: "home",
+      setStatus : ""
     }
   }
 
@@ -21,20 +21,21 @@ class App extends Component {
     })
     // console.log(page);
   }
+  changeStatus = status =>{
+    this.setState({
+      setStatus : status
+    })
+  }
 
   render() {
+    console.log("AppJS",this.state.setStatus)
     return (
-      // <>
-      //   <Header />
-      //   <Navbar goToPage={this.changePage} />
-      //   <Content menu={this.state.menu} goToPage={this.changePage} />
-      // </>
       <Router>
         <Header />
-        <Navbar goToPage ={this.changePage} />
+        <Navbar setsts={this.state.setStatus} />
         <Content
           menu = {this.state.menu}
-          goToPage = {this.changePage}
+          sts={this.changeStatus}
         />
       </Router>
     );

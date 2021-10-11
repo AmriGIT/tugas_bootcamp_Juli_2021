@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { Redirect } from "react-router";
 import { RowInput } from "../../components";
 
 class Contact extends Component {
@@ -41,35 +42,14 @@ class Contact extends Component {
   };
 
   renderList = () => {
+    
     console.log(this.state.data)
-    // if(this.state.data[0] !==0 && this.state.data.length !==0){
-
-    //     const list = this.state.data.map((user, idx) => {
-    //         // console.log("user:", user);
-    //         return (
-    //           <tr key={idx}>
-    //             <td>{idx + 1}</td>
-    //             <td>{user.username}</td>
-    //             <td>{user.address}</td>
-    //             <td>
-    //               <button onClick={() => this.props.setUser(idx)}>Update</button>
-    //             </td>
-    //             <td>
-    //               <button onClick={() => this.deleteUser(idx)}>Delete</button>
-    //             </td>
-    //           </tr>
-    //         );
-    //       });
-      
-    //       return list;
-    // }else{
         const list = this.props.users.map((user, idx) => {
-            // console.log("user:", user);
             return (
               <tr key={idx}>
                 <td>{idx + 1}</td>
                 <td>{user.username}</td>
-                <td>{user.address}</td>
+                <td>{user.address.city}</td>
                 <td>
                   <button onClick={() => this.props.setUser(idx)}>Update</button>
                 </td>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import { Home, Contact, Login } from "../pages";
+import { Home, Contact, Login, LoginMaster, Profil } from "../pages";
 // import Eparkir2 from '../pages/eparkir2';
 
 class Content extends Component {
@@ -13,9 +13,17 @@ class Content extends Component {
       harga: 0,
       currentCount: 0,
       data2: [],
+      isLogin: false,
+      username :null,
+      password : null
     };
   }
-
+  statusLogin = (status) => {
+    this.setState({
+      isLogin: status,
+    });
+    this.props.sts(status)
+  };
   addButton = (newUser) => {
     const newData = this.state.data;
     newData.push(newUser);
@@ -72,43 +80,46 @@ class Content extends Component {
 
   componentDidMount() {
     // fetch API terus update state
-    this.setState({
-      data: [
-        {
-          username: "Admin",
-          password: "1234",
-          address: "Jakarta",
-        },
-        {
-          username: "User",
-          password: "1234",
-          address: "Bogor",
-        },
-        {
-          username: "Operator",
-          password: "1234",
-          address: "Depok",
-        },
-      ],
-    });
+    // const url = "http://localhost:8080/api/authenticate"
+    // var headers = {}
+    // fetch(url,{
+    //     method : "POST",
+    //     body : JSON.stringify(this.state.username, this.state.password),
+    //     headers: headers
+    // }).then((respone) =>{
+    //     respone.json().then((result)=>{
+    //         console.warn("result", result);
+    //         localStorage.setItem('login', JSON.stringify({
+    //             login : true,
+    //             token: result.token
+    //         }))
+    //     })
+    // })
+    // const datauser = [
+    //   {
+    //     username: "Admin",
+    //     password: "1234",
+    //     address: "Jakarta",
+    //   },
+    //   {
+    //     username: "User",
+    //     password: "1234",
+    //     address: "Bogor",
+    //   },
+    //   {
+    //     username: "Operator",
+    //     password: "1234",
+    //     address: "Depok",
+    //   },
+    // ];
+    // this.setState({
+    //   data: datauser,
+    // });
   }
-
+  updateLogin = (status) => this.setState({ isLogin: status });
   render() {
-    // const harga = this.state.harga
-    // console.log(harga)
-    // const dataEdit = this.state.selectedUser >= 0 ? this.state.data[this.state.selectedUser] : {}
-    // const result = this.state.harga >=0 ? this.state.data2 : [this.state.harga]
-    // if (this.props.menu === "login")
-    //     return <Login addData={this.addButton} editData={this.editButton} editUser={dataEdit} />
-
-    // if (this.props.menu === "contact")
-    //     // const dataEdit = this.state.selectedUser >= 0 ? this.state.data[this.state.selectedUser] : {}
-    //     return <Contact users={this.state.data} setUser={this.updateSelectedUser} />
-    // if (this.props.menu === "eparkir")
-    //     return <Eparkir halaman={this.halamaneparkir} result={result}></Eparkir>
-    // if (this.props.menu === "cls")
-    //     return <Eparkir2 cekin={this.state.cekin} cekout={this.cekout}></Eparkir2>
-    //     return <Home />
+      console.log(this.state.data)
+    console.log("Conten",this.state.isLogin);
     const dataEdit =
       this.state.selectedUser >= 0
         ? this.state.data[this.state.selectedUser]
@@ -116,9 +127,17 @@ class Content extends Component {
     return (
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/contact">
-          <Contact users={this.state.data} setUser={this.updateSelectedUser} />
-        </Route>
+        <Route
+          path="/contact"
+          children={(props) => (
+            <Contact
+              {...props}
+              users={this.state.data}
+              setUser={this.updateSelectedUser}
+              statusLogin={this.state.isLogin}
+            />
+          )}
+        />
         <Route
           path="/login"
           children={(props) => (
@@ -127,9 +146,32 @@ class Content extends Component {
               addData={this.addButton}
               editData={this.editButton}
               editUser={dataEdit}
+              doLogin={this.updateLogin}
             />
           )}
         />
+        <Route
+          path="/login-master"
+          children={(props) => (
+            <LoginMaster
+              {...props}
+              users={this.state.data}
+              statuslog={this.statusLogin}
+            />
+          )}
+        />
+        
+        {this.state.isLogin ?  (
+          <Route
+            path="/profil"
+            children={(props) => (
+                <Profil/>
+            )}
+          />
+        ) : (
+          ""
+        )}
+        <Route children={() => <h1> Page Not Found</h1>} />
       </Switch>
     );
   }

@@ -33,7 +33,8 @@ class Login extends Component {
         const { username, password } = this.state
         if (username === "admin" && password === "1234") { // Bagaimana caranya me-reset value input ketika login success
             this.props.history.push("/")
-            this.setState({ isLogin: true })
+            // this.setState({ isLogin: true })
+            this.props.doLogin(true)
             this.resetForm()
         } else alert("Invalid username or password!!")
     }
