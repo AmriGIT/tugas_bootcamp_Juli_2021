@@ -28,6 +28,7 @@ class Profil extends Component {
     //         });
     //     }
     // }
+    
 
     componentWillUnmount=()=> {
         clearInterval(this.state.intervalId);

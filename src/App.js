@@ -11,8 +11,19 @@ class App extends Component {
     super(props);
     this.state = {
       menu: "home",
-      setStatus : ""
+      setStatus : false
     }
+  }
+
+  async componentDidMount(){
+    const token =  await localStorage.getItem("token")
+    if(token){
+        this.changeStatus(true)
+        this.setState({
+          setStatus : true
+        })
+    }
+
   }
 
   changePage = page => {
@@ -32,10 +43,11 @@ class App extends Component {
     return (
       <Router>
         <Header />
-        <Navbar setsts={this.state.setStatus} />
+        <Navbar sts2={this.state.setStatus} />
         <Content
           menu = {this.state.menu}
-          sts={this.changeStatus}
+          // sts={this.changeStatus}
+          sts2={this.state.setStatus}
         />
       </Router>
     );

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Carouselimg } from '../../components';
 
 
@@ -16,7 +17,7 @@ class Home extends Component {
                 alignItems: "center",
                 flexDirection: "column"
             }}> 
-            
+                <h1>{this.props.valueRedux}</h1>
                 <Carouselimg/>
                 <div>
                     <div>{this.state.username1}</div>
@@ -40,4 +41,10 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = state =>{
+    console.log("state ", state)
+    return{
+        username : state
+    }
+}
+export default connect(mapStateToProps)(Home);

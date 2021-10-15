@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import { Home, Contact, Login, LoginMaster, Profil } from "../pages";
 // import Eparkir2 from '../pages/eparkir2';
 
@@ -22,7 +23,6 @@ class Content extends Component {
     this.setState({
       isLogin: status,
     });
-    this.props.sts(status)
   };
   addButton = (newUser) => {
     const newData = this.state.data;
@@ -30,13 +30,14 @@ class Content extends Component {
     this.setState({
       data: newData,
     });
-    this.props.goToPage("contact");
-  };
+    // this.props.goToPage("contact");
 
+  };
+  
   editButton = (newUser) => {
     // data unique => findIndex
     const { selectedUser, data: oldData } = this.state;
-
+    
     oldData.splice(selectedUser, 1, newUser);
     this.setState({
       data: oldData,
@@ -44,7 +45,7 @@ class Content extends Component {
     });
     this.props.goToPage("contact");
   };
-
+  
   updateSelectedUser = (idx) => {
     this.setState({
       selectedUser: idx,
@@ -65,21 +66,26 @@ class Content extends Component {
         currentCount: newParkir.currentCount,
       },
       this.result
-    );
-    this.props.goToPage("eparkir");
-    return newParkir;
-  };
-  result = () => {
-    const { harga, currentCount, cekin } = this.state;
-    const data2 = [harga, currentCount, cekin];
-    this.setState({
-      data2: data2,
-    });
-    console.log(data2);
-  };
-
-  componentDidMount() {
-    // fetch API terus update state
+      );
+      this.props.goToPage("eparkir");
+      return newParkir;
+    };
+    result = () => {
+      const { harga, currentCount, cekin } = this.state;
+      const data2 = [harga, currentCount, cekin];
+      this.setState({
+        data2: data2,
+      });
+      console.log(data2);
+    };
+    // componentDidMount =()=>{
+    // }
+    
+    componentDidMount() {
+      this.setState({
+        isLogin : this.props.sts2
+      })
+      // fetch API terus update state
     // const url = "http://localhost:8080/api/authenticate"
     // var headers = {}
     // fetch(url,{
@@ -95,31 +101,32 @@ class Content extends Component {
     //         }))
     //     })
     // })
-    // const datauser = [
-    //   {
-    //     username: "Admin",
-    //     password: "1234",
-    //     address: "Jakarta",
-    //   },
-    //   {
-    //     username: "User",
-    //     password: "1234",
-    //     address: "Bogor",
-    //   },
-    //   {
-    //     username: "Operator",
-    //     password: "1234",
-    //     address: "Depok",
-    //   },
-    // ];
-    // this.setState({
-    //   data: datauser,
-    // });
+    const datauser = [
+      {
+        username: "Admin",
+        password: "1234",
+        address: "Jakarta",
+      },
+      {
+        username: "User",
+        password: "1234",
+        address: "Bogor",
+      },
+      {
+        username: "Operator",
+        password: "1234",
+        address: "Depok",
+      },
+    ];
+    this.setState({
+      data: datauser,
+    });
   }
-  updateLogin = (status) => this.setState({ isLogin: status });
+  // updateLogin = () => this.setState({ isLogin: this.props.sts2 });
   render() {
+    
       console.log(this.state.data)
-    console.log("Conten",this.state.isLogin);
+    console.log("Conten",this.props.statusLogin2);
     const dataEdit =
       this.state.selectedUser >= 0
         ? this.state.data[this.state.selectedUser]
@@ -132,9 +139,9 @@ class Content extends Component {
           children={(props) => (
             <Contact
               {...props}
-              users={this.state.data}
+              users={this.props.statusLogin}
               setUser={this.updateSelectedUser}
-              statusLogin={this.state.isLogin}
+              // statusLogin={this.state.isLogin}
             />
           )}
         />
@@ -147,10 +154,26 @@ class Content extends Component {
               editData={this.editButton}
               editUser={dataEdit}
               doLogin={this.updateLogin}
+              allUser={this.state.data}
+              // cekLogin={this.cekLogin}
             />
           )}
         />
-        <Route
+        
+
+        
+        {this.props.statusLogin2 ?  (
+          <Route
+            path="/profil"
+            children={(props) => (
+                <Profil
+                {...props}
+                // status={this.state.isLogin}
+                />
+            )}
+          />
+        ) : (
+          <Route
           path="/login-master"
           children={(props) => (
             <LoginMaster
@@ -160,21 +183,13 @@ class Content extends Component {
             />
           )}
         />
-        
-        {this.state.isLogin ?  (
-          <Route
-            path="/profil"
-            children={(props) => (
-                <Profil/>
-            )}
-          />
-        ) : (
-          ""
         )}
         <Route children={() => <h1> Page Not Found</h1>} />
       </Switch>
     );
   }
 }
-
-export default Content;
+const mapStateToProps = (state) => ({
+  statusLogin2: state.statusLogin,
+});
+export default connect(mapStateToProps) (Content);
