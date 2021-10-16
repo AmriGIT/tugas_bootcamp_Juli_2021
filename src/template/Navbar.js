@@ -24,14 +24,9 @@ class Navbar extends Component {
           <Container>
             <Nav className="me-auto">
               <Menu target="/">Home</Menu>
-              <Menu target="/contact">Contact</Menu>
-              <Menu target="/login">Log In</Menu>
-              
-              {this.props.statusLogin3 ? (
-              <Menu target="/profil">Profil</Menu> )
-              :
               <Menu target="/login-master">Login Master</Menu> 
-              }
+              <Menu target="/product">Buku</Menu> 
+              
             </Nav>
           </Container>
         </Navbarbro>

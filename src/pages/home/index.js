@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Carouselimg } from '../../components';
-
-
 
 class Home extends Component {
     constructor(props) {
@@ -11,32 +8,7 @@ class Home extends Component {
     }
     render() {
         return (
-            <div style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-            }}> 
-                <h1>{this.props.valueRedux}</h1>
-                <Carouselimg/>
-                <div>
-                    <div>{this.state.username1}</div>
-                    <div>{this.state.password}</div>
-                    <button onClick={this.changeButton}>5</button>
-                    <span>{this.state.counter}</span>
-                    <button onClick={this.plusOneButton}>+1</button>
-                </div>
-                <div>
-                    <div>
-                        <span>Username</span>
-                        <input type="text" name="username1" onChange={this.updateUsername} />
-                    </div>
-                    <div>
-                        <span>Password</span>
-                        <input type="password" name="password" onChange={this.updateUsername} />
-                    </div>
-                </div>
-            </div >
+                <h1>SELAMAT DATANG</h1>
         );
     }
 }

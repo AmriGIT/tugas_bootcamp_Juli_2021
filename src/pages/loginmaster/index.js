@@ -11,10 +11,9 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
-import { FirebaseContext } from '../../firebase';
 
 
-class LoginFirebase extends Component {
+class LoginMaster extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +31,7 @@ class LoginFirebase extends Component {
   };
   buttonLogin() {
     const { username, password } = this.state;
-    const url = "http://localhost:8080/api/authenticate";
+    const url = "https://gist.githubusercontent.com/reberhardt/1424783/raw/64449c53538b4dc016601aed0154f38e8de53f59/dluser.json";
     const headers = {
       Accept: "application/json, text/plain",
       "Content-Type": "application/json",
@@ -61,34 +60,6 @@ class LoginFirebase extends Component {
         console.warn(err);
       });
   }
-  onRegisterFirebase = () => {
-    const { username, password } = this.state
-    this.props.firebase.createUser({
-        email: username, password
-    })
-        .then(userCredential => {
-            console.log("userCredential:", userCredential)
-            alert("User created!")
-        })
-        .catch(err => {
-            console.warn("ERROR:", err)
-            alert(err.message)
-        })
-}
-onLoginFirebase = () => {
-  const { username, password } = this.state
-  this.props.firebase.signin({
-      email: username, password
-  })
-      .then(userCredential => {
-          console.log("userCredential:", userCredential)
-          alert("User Login!")
-      })
-      .catch(err => {
-          console.warn("ERROR:", err)
-          alert(err.message)
-      })
-}
 
   render() {
     console.log("Login",this.props.statusLogin)
@@ -141,23 +112,6 @@ onLoginFirebase = () => {
                   >
                     Login
                   </Button>
-                  <Button
-                    onClick={this.onRegisterFirebase}
-                    // onClick={this.props.loginHandler}
-                    variant="primary"
-                    type="button"
-                  >
-                    Registrasi Firebase
-                  </Button>
-                  <Button
-                    onClick={this.onLoginFirebase}
-                    // onClick={this.props.loginHandler}
-                    variant="primary"
-                    type="button"
-                  >
-                    Login Firebase
-                  </Button>
-                  
                 </Form>
               </Card.Body>
             </Card>
@@ -168,21 +122,6 @@ onLoginFirebase = () => {
   }
 }
 
-class LoginMaster extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-}
-render() {
-    return (
-        <FirebaseContext.Consumer>
-            {firebase =>
-                <LoginFirebase {...this.props}
-                    firebase={firebase} />}
-        </FirebaseContext.Consumer>
-    );
-}
-}
 
 const mapStateToProps = (state) => ({
   statusLogin: state.statusLogin,
@@ -197,3 +136,14 @@ const mapDispatchToProps = (dispatch) => ({
     }),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginMaster);
+
+
+
+
+
+/**
+ * LOGIN -->  User
+ *                List Tabel Buku Order
+ *                Order Buku
+ *                Chekcout
+ */

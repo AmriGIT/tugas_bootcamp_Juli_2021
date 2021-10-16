@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { Home, Contact, Login, LoginMaster, Profil } from "../pages";
+import { Home, LoginMaster, Product } from "../pages";
 // import Eparkir2 from '../pages/eparkir2';
 
 class Content extends Component {
@@ -127,52 +127,9 @@ class Content extends Component {
     
       console.log(this.state.data)
     console.log("Conten",this.props.statusLogin2);
-    const dataEdit =
-      this.state.selectedUser >= 0
-        ? this.state.data[this.state.selectedUser]
-        : {};
     return (
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route
-          path="/contact"
-          children={(props) => (
-            <Contact
-              {...props}
-              users={this.props.statusLogin}
-              setUser={this.updateSelectedUser}
-              // statusLogin={this.state.isLogin}
-            />
-          )}
-        />
-        <Route
-          path="/login"
-          children={(props) => (
-            <Login
-              {...props}
-              addData={this.addButton}
-              editData={this.editButton}
-              editUser={dataEdit}
-              doLogin={this.updateLogin}
-              allUser={this.state.data}
-              // cekLogin={this.cekLogin}
-            />
-          )}
-        />
-        
-
-        
-        {this.props.statusLogin2 ?  (
-          <Route
-            path="/profil"
-            children={(props) => (
-                <Profil
-                {...props}
-                // status={this.state.isLogin}
-                />
-            )}
-          />
-        ) : (
           <Route
           path="/login-master"
           children={(props) => (
@@ -183,7 +140,16 @@ class Content extends Component {
             />
           )}
         />
-        )}
+                  <Route
+          path="/product"
+          children={(props) => (
+            <Product
+              {...props}
+              users={this.state.data}
+              statuslog={this.statusLogin}
+            />
+          )}
+        />
         <Route children={() => <h1> Page Not Found</h1>} />
       </Switch>
     );
