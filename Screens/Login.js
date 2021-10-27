@@ -23,9 +23,21 @@ class Login extends Component {
     this.keyboardDidHideListener.remove()
   }
   buttonLogin =() =>{
+    
     const {username, password} = this.state
-    if(username === "admin" && password ==="admin")
-      return Alert.alert("Informasi", "Login Success!!")
+    const result = this.props.userList.find(obj => obj.name === username)
+    if(result != null){
+      if(username === result.name && password ==="123" ){
+        Alert.alert("Informasi", "Login Sucess!!")
+        console.log(result.name)
+        return this.props.status(true)
+      }
+    }
+    // if(username === "admin" && password ==="admin"){
+    //   Alert.alert("Informasi", "Login Success!!")
+    //   return this.props.status(true)
+
+    // }
     return Alert.alert("Warning", "Invalid Username & Password")
   }
   render() {
