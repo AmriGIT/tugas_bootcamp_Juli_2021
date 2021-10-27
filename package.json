@@ -14,6 +14,7 @@
     "react-dom": "^17.0.2",
     "react-native": "0.66.1",
     "react-native-elements": "^3.4.2",
+    "react-native-neat-date-picker": "^1.1.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-vector-icons": "^8.1.0",
     "react-router-dom": "^5.3.0",

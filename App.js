@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       statusLogin: false,
-      propsUser : []
+      propsUser : [],
+      usernames : ""
     };
   }
   
@@ -20,15 +21,18 @@ class App extends Component {
       .then(propsUser => this.setState({propsUser: [...propsUser, ...propsUser]}))
       .finally(() => this.setState({loading: false}));
   }
-  statuslog=(status)=>{
+  statuslog=(status, nama)=>{
     this.setState({
-      statusLogin: status
+      statusLogin: status,
+      usernames : nama
     })
   }
   render() {
     console.log(this.state.statusLogin)
     if(this.state.statusLogin){
-     return <Home/>
+     return <Home
+     username = {this.state.usernames}
+     />
     }else{
       return<Login 
       status = {this.statuslog}

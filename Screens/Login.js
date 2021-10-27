@@ -30,7 +30,7 @@ class Login extends Component {
       if(username === result.name && password ==="123" ){
         Alert.alert("Informasi", "Login Sucess!!")
         console.log(result.name)
-        return this.props.status(true)
+        return this.props.status(true, result.name)
       }
     }
     // if(username === "admin" && password ==="admin"){
