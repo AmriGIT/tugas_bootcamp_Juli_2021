@@ -3,6 +3,7 @@ import {View, Text, ImageBackground, StyleSheet, Keyboard, KeyboardAvoidingViewB
 import {Button, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { connect } from 'react-redux';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 class Login extends Component {
   constructor(props) {
@@ -25,12 +26,12 @@ class Login extends Component {
   buttonLogin =() =>{
     
     const {username, password} = this.state
-    const result = this.props.userList.find(obj => obj.name === username)
+    const result = this.props.userList.find(obj => obj.username === username)
     if(result != null){
-      if(username === result.name && password ==="123" ){
+      if(username === result.username && password ==="123" ){
         Alert.alert("Informasi", "Login Sucess!!")
         console.log(result.name)
-        return this.props.status(true, result.name)
+        return this.props.dologin({username})
       }
     }
     // if(username === "admin" && password ==="admin"){
@@ -96,4 +97,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 });
-export default Login;
+
+const mapDispatchToProps = dispatch =>({
+  dologin : dataLogin => dispatch ({ type :"LOGIN_SUCCESS", payload : dataLogin})
+})
+export default connect(null, mapDispatchToProps) (Login);

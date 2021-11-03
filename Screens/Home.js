@@ -36,7 +36,8 @@ showCurrent=()=>{
     render() { 
         return ( 
             <View style={{flex:1}}>
-                    <Text>Halo {this.props.username}</Text>
+                    {/* <Text>Halo {this.props.username}</Text>
+                    
                     <Button title={'Tanggal Tanpa Thriparty'} onPress={this.showCurrent} />
                     <Button title={'Tanggal'} onPress={()=>this.openDatePicker()} />
                     <DatePicker
@@ -45,6 +46,8 @@ showCurrent=()=>{
                     onCancel= {this.oncancel}
                     onConfirm={this.onConfirm}
                     />
+                    <Admin/> */}
+                    <Admin></Admin>
             </View>
          );
     }
