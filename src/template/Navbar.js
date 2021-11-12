@@ -7,7 +7,7 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin : false
+      isLogin: false,
     };
   }
 
@@ -17,16 +17,32 @@ class Navbar extends Component {
   //   })
   // }
   render() {
-    console.log("Nvbar", this.props.statusLogin3)
     return (
       <Row>
-        <Navbarbro bg="dark" variant="dark">
+        <Navbarbro style={{ backgroundColor: "#439889" }} variant="dark">
           <Container>
             <Nav className="me-auto">
               <Menu target="/">Home</Menu>
-              <Menu target="/login-master">Login Master</Menu> 
-              <Menu target="/product">Buku</Menu> 
-              
+              {!this.props.statusLogin ? (
+                <Menu target="/login-master">Login Master</Menu>
+              ) : (
+                ""
+              )}
+              {this.props.statusLogin ? (
+                <Menu target="/suratkeluar">Surat Keluar</Menu>
+              ) : (
+                ""
+              )}
+              {this.props.statusLogin ? (
+                <Menu target="/suratmasuk">Surat Masuk</Menu>
+              ) : (
+                ""
+              )}
+              {this.props.statusLogin ? (
+                <Menu target="/disposisi">Disposisi</Menu>
+              ) : (
+                ""
+              )}
             </Nav>
           </Container>
         </Navbarbro>
@@ -35,6 +51,6 @@ class Navbar extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  statusLogin3: state.statusLogin,
+  statusLogin: state.loginRedux.statusLogin,
 });
-export default connect(mapStateToProps) (Navbar);
+export default connect(mapStateToProps)(Navbar);

@@ -1,4 +1,8 @@
 import Home from './home';
 import LoginMaster from './loginmaster';
 import Product from './product';
-export { Home, LoginMaster, Product}
+import Login from './login'
+import SuratKeluar from './suratkeluar'
+import SuratMasuk from './suratmasuk'
+import Disposisi from './disposisi'
+export { Home, LoginMaster, Product, Login, SuratKeluar, SuratMasuk, Disposisi}

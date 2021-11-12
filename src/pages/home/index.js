@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class Home extends Component {
     constructor(props) {
@@ -13,10 +12,5 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = state =>{
-    console.log("state ", state)
-    return{
-        username : state
-    }
-}
-export default connect(mapStateToProps)(Home);
+
+export default(Home);

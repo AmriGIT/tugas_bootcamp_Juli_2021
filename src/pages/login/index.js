@@ -1,16 +1,10 @@
 // import Button from "@restart/ui/esm/Button";
+import axios from "axios";
 import React, { Component } from "react";
-import {
-  Form,
-  Button,
-  Container,
-  Row,
-  Card,
-  Col
-} from "react-bootstrap";
+import { Form, Button, Container, Row, Card, Col } from "react-bootstrap";
 import { connect } from "react-redux";
-
-class LoginMaster extends Component {
+const BaseUrl = "http://localhost:8080/api/authenticate";
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +13,9 @@ class LoginMaster extends Component {
       isLogin: false,
       show: "",
       setShow: false,
+      isloading : false,
+      error :[],
+      isError : false
     };
   }
   setValue = (e) => {
@@ -27,44 +24,33 @@ class LoginMaster extends Component {
     });
   };
 
-  resetForm = () => {
+  userLogin = async () => {
+    const username = this.state.username;
+    const password = this.state.password;
     this.setState({
-      username: "",
-      password: "",
-      isLoading :false,
-    });
-  };
-
-
-
-  loginButton = () => {
-    this.setState({
-      isLoading:true
+        isloading : true
     })
-    const { username, password } = this.state;
-
-    fetch("http://localhost:8080/api/authenticate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    }).then(async (resp) => {
-      const data = await resp.json();
-      const { token } = data;
-      if (token) {
-        localStorage.setItem("token", token);
-        this.props.loginHandler(token);
-        this.props.history.push("/product")
-      } else {
-        alert("Gagal Login");
-      }
-      console.log("status_Login di Props ",this.props.statusLogin);
+    const user = { username, password };
+    try {
+      const rest = await axios.post(`${BaseUrl}`, user);
+      this.setState({
+        isloading : false
     })
-  };
+      localStorage.setItem("token", rest.data.token)
+      this.props.history.push("/suratkeluar")
+      this.props.loginHandler(rest.data.token);
+    } catch (err) {
+       this.setState({
+           error : err.response.data.errors,
+           isloading: false,
+           isError: true
+       })
 
+    }
+    console.log("status_Login di Login ",this.props.statusLogin);
+  };
   render() {
-    
+      const text = this.state.isloading? "Loading....":"Login"
     return (
       <Container style={{ paddingTop: "15px" }}>
         <Row className="justify-content-md-center">
@@ -74,16 +60,7 @@ class LoginMaster extends Component {
               <Card.Body>
                 <Card.Title>Login Master</Card.Title>
                 <Form>
-                  <Card.Text>{this.state.username}</Card.Text>
-                  <Card.Text>{this.state.password}</Card.Text>
-                  {/* {this.props.statusLogin ? (
-                    <>
-                      <Alert variant="success">Success</Alert>{" "}
-                      <Redirect to="/product" />
-                    </>
-                  ) : (
-                    ""
-                  )} */}
+
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
@@ -107,12 +84,13 @@ class LoginMaster extends Component {
                     <Form.Check type="checkbox" label="Check me out" />
                   </Form.Group>
                   <Button
-                    onClick={this.loginButton}
+                    onClick={this.userLogin}
                     // onClick={this.props.loginHandler}
                     variant="primary"
                     type="button"
+            
                   >
-                    Login
+                    {text}
                   </Button>
                 </Form>
               </Card.Body>
@@ -136,11 +114,4 @@ const mapDispatchToProps = (dispatch) => ({
       payload: token,
     }),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(LoginMaster);
-
-/**
- * LOGIN -->  User
- *                List Tabel Buku Order
- *                Order Buku
- *                Chekcout
- */
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

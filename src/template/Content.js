@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { Home, LoginMaster, Product } from "../pages";
+import { Disposisi, Home, Login, SuratKeluar, SuratMasuk } from "../pages";
 // import Eparkir2 from '../pages/eparkir2';
 
 class Content extends Component {
@@ -15,8 +15,8 @@ class Content extends Component {
       currentCount: 0,
       data2: [],
       isLogin: false,
-      username :null,
-      password : null
+      username: null,
+      password: null,
     };
   }
   statusLogin = (status) => {
@@ -31,13 +31,12 @@ class Content extends Component {
       data: newData,
     });
     // this.props.goToPage("contact");
-
   };
-  
+
   editButton = (newUser) => {
     // data unique => findIndex
     const { selectedUser, data: oldData } = this.state;
-    
+
     oldData.splice(selectedUser, 1, newUser);
     this.setState({
       data: oldData,
@@ -45,7 +44,7 @@ class Content extends Component {
     });
     this.props.goToPage("contact");
   };
-  
+
   updateSelectedUser = (idx) => {
     this.setState({
       selectedUser: idx,
@@ -66,41 +65,26 @@ class Content extends Component {
         currentCount: newParkir.currentCount,
       },
       this.result
-      );
-      this.props.goToPage("eparkir");
-      return newParkir;
-    };
-    result = () => {
-      const { harga, currentCount, cekin } = this.state;
-      const data2 = [harga, currentCount, cekin];
-      this.setState({
-        data2: data2,
-      });
-      console.log(data2);
-    };
-    // componentDidMount =()=>{
-    // }
-    
-    componentDidMount() {
-      this.setState({
-        isLogin : this.props.sts2
-      })
-      // fetch API terus update state
-    // const url = "http://localhost:8080/api/authenticate"
-    // var headers = {}
-    // fetch(url,{
-    //     method : "POST",
-    //     body : JSON.stringify(this.state.username, this.state.password),
-    //     headers: headers
-    // }).then((respone) =>{
-    //     respone.json().then((result)=>{
-    //         console.warn("result", result);
-    //         localStorage.setItem('login', JSON.stringify({
-    //             login : true,
-    //             token: result.token
-    //         }))
-    //     })
-    // })
+    );
+    this.props.goToPage("eparkir");
+    return newParkir;
+  };
+  result = () => {
+    const { harga, currentCount, cekin } = this.state;
+    const data2 = [harga, currentCount, cekin];
+    this.setState({
+      data2: data2,
+    });
+    console.log(data2);
+  };
+  // componentDidMount =()=>{
+  // }
+
+  componentDidMount() {
+    this.setState({
+      isLogin: this.props.sts2,
+    });
+
     const datauser = [
       {
         username: "Admin",
@@ -122,40 +106,49 @@ class Content extends Component {
       data: datauser,
     });
   }
-  // updateLogin = () => this.setState({ isLogin: this.props.sts2 });
   render() {
-    
-      console.log(this.state.data)
-    console.log("Conten",this.props.statusLogin2);
     return (
       <Switch>
         <Route path="/" exact component={Home} />
+        {!this.props.statusLogin ? (
           <Route
-          path="/login-master"
-          children={(props) => (
-            <LoginMaster
-              {...props}
-              users={this.state.data}
-              statuslog={this.statusLogin}
-            />
-          )}
-        />
-                  <Route
-          path="/product"
-          children={(props) => (
-            <Product
-              {...props}
-              users={this.state.data}
-              statuslog={this.statusLogin}
-            />
-          )}
-        />
+            path="/login-master"
+            children={(props) => <Login {...props} />}
+          />
+        ) : (
+          ""
+        )}
+        {this.props.statusLogin ? (
+          <Route
+            path="/suratkeluar"
+            children={(props) => <SuratKeluar {...props} />}
+          />
+        ) : (
+          ""
+        )}
+        {this.props.statusLogin ? (
+          <Route
+            path="/suratmasuk"
+            children={(props) => <SuratMasuk {...props} />}
+          />
+        ) : (
+          ""
+        )}
+        {this.props.statusLogin ? (
+          <Route
+            path="/disposisi"
+            children={(props) => <Disposisi {...props} />}
+          />
+        ) : (
+          ""
+        )}
+
         <Route children={() => <h1> Page Not Found</h1>} />
       </Switch>
     );
   }
 }
 const mapStateToProps = (state) => ({
-  statusLogin2: state.statusLogin,
+  statusLogin: state.loginRedux.statusLogin,
 });
-export default connect(mapStateToProps) (Content);
+export default connect(mapStateToProps)(Content);

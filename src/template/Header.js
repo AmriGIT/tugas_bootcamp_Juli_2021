@@ -7,7 +7,7 @@ const Header = () => {
       <div
         style={{
           height: 120,
-          backgroundColor: "#d5c89f",
+          backgroundColor: "#00695c",
         }}
       />
     </Row>

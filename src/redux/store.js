@@ -1,7 +1,16 @@
-import { createStore } from "redux";
-import  reducer from './reducer';
+import { combineReducers, createStore } from "redux";
+import addMasuk from "./AddMasuk";
+import dataProductReducer from "./dataProductReducer";
+import loginReducer from "./loginReducer"
+
+
+const allReducer  = combineReducers({
+  loginRedux: loginReducer,
+  dataRedux : dataProductReducer,
+  addMasuk : addMasuk
+})
 const store = createStore(
-    reducer,
+    allReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
   export default store
