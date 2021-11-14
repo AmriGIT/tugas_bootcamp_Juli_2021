@@ -15,4 +15,5 @@ const addMasuk = (state = defaultState, action) =>{
         return state
     }
 }
+
 export default addMasuk

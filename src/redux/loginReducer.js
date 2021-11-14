@@ -10,6 +10,10 @@ const loginReducer = (state = defaultState, action) =>{
       statusLogin : true,
       token : action.payload
     }
+    case "LOGOUT_OK" :
+      return{
+        statusLogin: false
+      }
     default :
     return state
 

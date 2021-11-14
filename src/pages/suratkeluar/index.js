@@ -123,7 +123,7 @@ class SuratKeluar extends Component {
             }
           );
           console.log(res.config.data);
-          this.props.history.push("/suratkeluar");
+          // this.props.history.push("/suratkeluar");
           // this.props.addMasuk(res.config.data);
           this.formReset();
           this.getData();
@@ -171,7 +171,7 @@ class SuratKeluar extends Component {
           tanggal: tanggal,
           edit: true,
         });
-        console.log(tanggal);
+        // console.log(tanggal);
       });
   };
   deleteDataId = async (e) => {

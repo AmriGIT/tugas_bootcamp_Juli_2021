@@ -7,7 +7,7 @@ class Home extends Component {
     }
     render() {
         return (
-                <h1>SELAMAT DATANG</h1>
+                <h1>SELAMAT DATANG MANAJEMEN SURAT BERBASIS ELEKTRONIK</h1>
         );
     }
 }

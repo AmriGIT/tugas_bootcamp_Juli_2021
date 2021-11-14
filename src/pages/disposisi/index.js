@@ -1,55 +1,80 @@
 import React, { Component } from "react";
-import { Alert, Col, Row, Table, Button, Form } from "react-bootstrap";
+import {
+  Alert,
+  Col,
+  Row,
+  Table,
+  Button,
+  Form,
+  Container,
+} from "react-bootstrap";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import Moment from "moment";
 import axios from "axios";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
 class Disposisi extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        renderData:[],
+      renderData: [],
       menu: false,
       catatan: "",
       isidisposisi: "",
       tgl_dispo: "",
       tujuan: "",
-      suratmasuk:"",
+      suratmasuk: "",
       id: "",
+      displaycetak:false
     };
     this.toggleMenu = this.toggleMenu.bind(this);
   }
   toggleMenu() {
-    this.setState({ menu: !this.state.menu });
+    this.setState({ menu: !this.state.menu, displaycetak: !this.state.displaycetak });
   }
   setValue = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
-getDispo = async()=>{
+  getDispo = async () => {
     const token = localStorage.getItem("token");
-    try{
-        const res = await axios.get("http://localhost:8080/api/masuk/"+this.props.data.codesurat,{
-            headers:{
-                Authorization: "Bearer " + token,
-                "Content-Type": "application/json",
-            }
-        })
-        console.log("iki dispo ", res.data)
-        this.props.loginHandler(token);
-        this.setState({
-            renderData: res.data.disposisi
-        })
-    }catch(err){
-        console.log(err)
+    try {
+      const res = await axios.get(
+        "http://localhost:8080/api/masuk/" + this.props.data.codesurat,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("iki dispo ", res.data);
+      this.props.loginHandler(token);
+      this.setState({
+        renderData: res.data.disposisi,
+      });
+    } catch (err) {
+      console.log(err);
     }
-
-}
-componentDidMount(){
+  };
+  componentDidMount() {
     setTimeout(this.getDispo, 3000);
-
-}
+  }
+  clearForm=()=>{
+    this.setState({
+      menu: false,
+      catatan: "",
+      isidisposisi: "",
+      tgl_dispo: "",
+      tujuan: "",
+      suratmasuk: "",
+      id: "",
+      displaycetak:false
+    })
+  }
   saveData = async () => {
     const { catatan, isidisposisi, tgl_dispo, tujuan, suratmasuk } = this.state;
     const newTodo = {
@@ -61,13 +86,13 @@ componentDidMount(){
         id: this.props.data.id,
       },
     };
-    console.log("new todos", newTodo)
+    console.log("new todos", newTodo);
     try {
       if (
         catatan !== "" &&
         isidisposisi !== "" &&
-        tgl_dispo != "" &&
-        tujuan != ""
+        tgl_dispo !== "" &&
+        tujuan !== ""
       ) {
         const res = await axios.post(
           "http://localhost:8080/api/disposisi/",
@@ -79,20 +104,29 @@ componentDidMount(){
             },
           }
         );
-        console.log("data ",this.props.data)
-        this.getDispo();    
+        console.log("data ", this.props.data);
+        this.getDispo();
       }
     } catch (err) {
       console.log(err);
     }
   };
-
+  printDocument() {
+    const input = document.getElementById("divToPrint");
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "JPEG", 10, 10);
+      // pdf.output('dataurlnewwindow');
+      pdf.save("SuratMasuk.pdf");
+    });
+  }
   render() {
-      console.log("setrender",this.state.renderData)
+    console.log("setrender", this.state.renderData);
     const show = this.state.menu ? "" : "none";
 
     if (this.props.data.length === 0) {
-      alert("Dispoisis Surat Masuk Belum");
+      alert("Dispoisi Surat Masuk Belum Dipilih");
       return <Redirect to="/suratmasuk" />;
     } else {
       const posts = this.state.renderData.map((post, i) => (
@@ -103,10 +137,11 @@ componentDidMount(){
           <td>{Moment(post.tgl_dispo).format("DD-MM-YYYY")}</td>
         </tr>
       ));
-    
+
       return (
         <>
-          <Row style={{ paddingTop: "10px" }}>
+          <div></div>
+          <Row style={{ paddingTop: "10" }}>
             <Form style={{ display: show }}>
               {/* <Col>
                     <Form.Control
@@ -147,31 +182,100 @@ componentDidMount(){
               <Button onClick={this.saveData} variant="primary" type="button">
                 Simpan
               </Button>
+              <Button onClick={this.clearForm} variant="primary"> Cancel</Button>
             </Form>
           </Row>
-          <Row style={{ paddingTop: "10px" }}>
-            <Col>
-              <Alert variant="success">
-                Dari Nomor Agenda <b> {this.props.data.noagenda}</b>, Nomor
-                Surat <b>{this.props.data.nosurat}</b> perihal{" "}
-                <b> {this.props.data.isi} </b>
-              </Alert>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <div style={{ paddingBottom: 10 }}>
+          <Container id="divToPrint" style={{paddingTop:10, display:this.state.displaycetak?"none":""}}>
+            <Alert variant="success">
+              <Row
+                style={{
+                  paddingTop: "10px",
+                  maxWidth: "500",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+              </Row>
+              <Row >
+                <Col>
+                  Madrasah Aliyah Negeri Sukoharjo Telah Menerima Surat dari
+                  sebagai berikut :
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={3}>Nomor Surat</Col>
+                <Col sm={1}>:</Col>
+                <Col sm={6}>
+                  <b>{this.props.data.nosurat}</b>
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={3}>Asal Surat</Col>
+                <Col sm={1}>:</Col>
+                <Col sm={6}>
+                  {" "}
+                  <b>{this.props.data.asalsurat}</b>
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={3}>Isi Surat</Col>
+                <Col sm={1}>:</Col>
+                <Col sm={6}>
+                  {" "}
+                  <b>{this.props.data.isi}</b>
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={3}>Tracking Code Surat</Col>
+                <Col sm={1}>:</Col>
+                <Col sm={6}>
+                  {" "}
+                  <b>{this.props.data.codesurat}</b>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  Silahkan Mengunduh Aplikasi <b>E-Tracking-Surat</b> di
+                  PlayStore Agar dapat memonitoring surat yang telah diterima
+                  oleh pihak instansi
+                </Col>
+              </Row>
+              <Row>
+                <Col  sm={5}></Col>
+                <Col  sm={4}>Sukoharjo  {Moment(new Date()).format("DD-MM-YYYY")}</Col>
+              </Row>
+              <Row>
+                <Col  sm={5}></Col>
+                <Col  sm={4}>Penerima Surat</Col>
+              </Row>
+              <Row style={{marginTop:30}}>
+                <Col  sm={5}></Col>
+                <Col  sm={4}>{this.props.data.user}</Col>
+              </Row>
+            </Alert>
+          </Container>
+
+              <Row style={{paddingBottom:10, paddingTop:10}}>
+                <Col sm={3}>
                 <Button type="button" onClick={this.toggleMenu}>
                   {" "}
                   Add Disposisi
                 </Button>
-              </div>
+                </Col>
+                <Col sm={3}>
+              <Button type="button" onClick={this.printDocument}>
+                  {" "}
+                  Download
+                </Button>
+                </Col>
+              </Row>
+          <Row>
+              <Col>
               <Table striped bordered hover variant="dark">
                 <thead>
                   <tr>
-                    <th scope="col">
-                      No
-                    </th>
+                    <th scope="col">No</th>
                     <th scope="col">Tujuan Disposisi</th>
                     <th scope="col">Isi Disposisi</th>
                     <th scope="col">Tanggal Disposisi</th>
@@ -186,22 +290,20 @@ componentDidMount(){
     }
   }
 }
-
 const mapDispatchToProps = (dispatch) => ({
-    loginHandler: (token) =>
-      dispatch({
-        type: "LOGIN_OK",
-        payload: token,
-      }),
-    dispoHandler: (data) =>
-      dispatch({
-        type: "GETALL",
-        data: data,
-      }),
-  
-  });
+  loginHandler: (token) =>
+    dispatch({
+      type: "LOGIN_OK",
+      payload: token,
+    }),
+  dispoHandler: (data) =>
+    dispatch({
+      type: "GETALL",
+      data: data,
+    }),
+});
 const mapStateToProps = (state) => ({
   data: state.dataRedux.data,
-  token:state.loginRedux.token
+  token: state.loginRedux.token,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Disposisi);

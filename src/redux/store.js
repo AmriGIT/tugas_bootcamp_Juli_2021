@@ -1,12 +1,12 @@
 import { combineReducers, createStore } from "redux";
 import addMasuk from "./AddMasuk";
-import dataProductReducer from "./dataProductReducer";
+import datamasuk from "./datamasuk";
 import loginReducer from "./loginReducer"
 
 
 const allReducer  = combineReducers({
   loginRedux: loginReducer,
-  dataRedux : dataProductReducer,
+  dataRedux : datamasuk,
   addMasuk : addMasuk
 })
 const store = createStore(

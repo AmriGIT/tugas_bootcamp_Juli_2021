@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { Disposisi, Home, Login, SuratKeluar, SuratMasuk } from "../pages";
+import { Disposisi, Home, Login, Logout, SuratKeluar, SuratMasuk } from "../pages";
 // import Eparkir2 from '../pages/eparkir2';
 
 class Content extends Component {
@@ -138,6 +138,14 @@ class Content extends Component {
           <Route
             path="/disposisi"
             children={(props) => <Disposisi {...props} />}
+          />
+        ) : (
+          ""
+        )}
+        {this.props.statusLogin ? (
+          <Route
+            path="/logout"
+            children={(props) => <Logout {...props} />}
           />
         ) : (
           ""

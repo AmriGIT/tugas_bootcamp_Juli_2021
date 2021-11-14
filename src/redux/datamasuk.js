@@ -3,8 +3,8 @@ const defaultState = {
     data : []
 }
 
-const dataProductReducer = (state = defaultState, action) =>{
-    console.log("DataProduct ", action.type)
+const datamasuk = (state = defaultState, action) =>{
+    console.log("DataMasuk ", action.type)
     switch (action.type){
         case "GETALL" :
         return {
@@ -15,4 +15,4 @@ const dataProductReducer = (state = defaultState, action) =>{
         return state
     }
 }
-export default dataProductReducer
+export default datamasuk

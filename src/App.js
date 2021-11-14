@@ -40,7 +40,7 @@ class App extends Component {
         isLoading:false
       })
       localStorage.removeItem('token')
-      alert("Login Ulang")
+      // alert("Login Ulang")
       
     }
 

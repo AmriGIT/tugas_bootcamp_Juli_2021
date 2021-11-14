@@ -43,6 +43,11 @@ class Navbar extends Component {
               ) : (
                 ""
               )}
+              {this.props.statusLogin ? (
+                <Menu target="/logout">Logout</Menu>
+              ) : (
+                ""
+              )}
             </Nav>
           </Container>
         </Navbarbro>
